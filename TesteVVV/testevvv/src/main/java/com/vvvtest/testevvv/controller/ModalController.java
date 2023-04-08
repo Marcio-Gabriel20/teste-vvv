@@ -36,8 +36,8 @@ public class ModalController {
 
     }
 
-    @PutMapping("/{id}/status")
-    public Modal atualizaModal(@PathVariable Long id, @RequestParam String status) {
+    @PutMapping("/status")
+    public Modal atualizaModal(Long id, @RequestParam String status) {
 
         return modalService.atualizaModal(id, status);
 
