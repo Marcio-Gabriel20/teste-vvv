@@ -2,6 +2,7 @@ package com.vvvtest.testevvv.service;
 
 import java.util.List;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,12 +27,11 @@ public class ModalService {
 
     }
 
-    public Modal atualizaModal(Long id, String status) {
+    public Modal atualizaModal(Long id, Modal modal) {
 
-        Modal modal = modalRepository.findById(id).orElse(null);
-        modal.setStatus(status);
-        modalRepository.save(modal);
-        return modal;
+        Modal modalAtual = modalRepository.findById(id).get();
+        BeanUtils.copyProperties(modal, modalAtual, "id", "name");
+        return modalRepository.save(modalAtual);
 
     }
 
