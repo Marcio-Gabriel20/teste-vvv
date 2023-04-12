@@ -1,8 +1,10 @@
 package com.vvvtest.testevvv.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -30,6 +32,13 @@ public class ModalController {
 
     }
 
+    @GetMapping("/{id}")
+    public Optional<Modal> buscarPorId(@PathVariable("id") Long id) {
+
+        return modalService.buscarPorId(id);
+
+    }
+
     @PostMapping
     public Modal salvar(@RequestBody Modal modal) {
         
@@ -41,6 +50,13 @@ public class ModalController {
     public ModalDTO atualizaStatusById(@RequestBody ModalUpdateForm form, @PathVariable("id") Long id) {
 
         return modalService.atualizarStatusById(form, id);
+
+    }
+
+    @DeleteMapping("/{id}")
+    public String deletarPorId(@PathVariable("id") Long id) {
+
+        return modalService.deletarPorId(id);
 
     }
 

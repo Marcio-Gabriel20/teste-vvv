@@ -48,6 +48,12 @@ public class ModalService {
 
     }
 
+    public Optional<Modal> buscarPorId(Long id) {
+
+        return modalRepository.findById(id);
+
+    }
+
     public Modal salvar(Modal modal) {
         
         return modalRepository.save(modal);
@@ -74,6 +80,14 @@ public class ModalService {
         }
 
         return null;
+
+    }
+
+    public String deletarPorId(Long id) {
+
+        modalRepository.deleteById(id);
+
+        return "Excluído com sucesso!";
 
     }
 
